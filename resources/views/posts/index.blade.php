@@ -5,15 +5,17 @@
     <div class="container">
         <div class="row align-items-stretch retro-layout">
             <div class="col-md-4">
-                <a href="{{ route('posts.show') }}" class="h-entry mb-30 v-height gradient">
+                @foreach($posts as $post)
+                    <a href="{{ route('post.show', $post->id) }}" class="h-entry mb-30 v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('assets/images/img_2_horizontal.jpg')"></div>
+                        <div class="featured-img" style="background-image: url('{{ $post->preview_img }}assets/images/img_2_horizontal.jpg')"></div>
 
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>AI can now kill those annoying cookie pop-ups</h2>
-                    </div>
-                </a>
+                        <div class="text">
+                            <span class="date">{{ $post->created_at }}</span>
+                            <h2>{{ $post->title }}</h2>
+                        </div>
+                    </a>
+                @endforeach
 
             </div>
             <div class="col-md-4">
