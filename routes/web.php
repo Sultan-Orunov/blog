@@ -20,4 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/posts', \App\Http\Controllers\Posts\IndexController::class)->name('posts.index');
+
+Route::group(['prefix' => 'posts'], function () {
+    Route::get('/', \App\Http\Controllers\Posts\IndexController::class)->name('post.index');
+    Route::get('/{post}', \App\Http\Controllers\Posts\ShowController::class)->name('post.show');
+});

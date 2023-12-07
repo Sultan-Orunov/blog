@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row align-items-stretch retro-layout">
             <div class="col-md-4">
-                <a href="single.html" class="h-entry mb-30 v-height gradient">
+                <a href="{{ route('posts.show') }}" class="h-entry mb-30 v-height gradient">
 
                     <div class="featured-img" style="background-image: url('assets/images/img_2_horizontal.jpg')"></div>
 
