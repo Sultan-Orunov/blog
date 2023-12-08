@@ -12,7 +12,7 @@
                         <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
                         <div class="text">
-                            <span class="date">{{ $posts[$i]->created_at }}</span>
+                            <span class="date">{{ $posts[$i]->created_at->diffForHumans() }}</span>
                             <h2>{{ $posts[$i]->title }}</h2>
                         </div>
                     </a>
@@ -27,7 +27,7 @@
                             <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
                             <div class="text">
-                                <span class="date">{{ $posts[$i]->created_at }}</span>
+                                <span class="date">{{ $posts[$i]->created_at->diffForHumans() }}</span>
                                 <h2>{{ $posts[$i]->title }}</h2>
                             </div>
                         </a>
@@ -42,7 +42,7 @@
                         <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
                         <div class="text">
-                            <span class="date">{{ $posts[$i]->created_at }}</span>
+                            <span class="date">{{ $posts[$i]->created_at->diffForHumans() }}</span>
                             <h2>{{ $posts[$i]->title }}</h2>
                         </div>
                     </a>
@@ -66,16 +66,16 @@
         <div class="row g-3">
             <div class="col-md-9">
                 <div class="row g-3">
-                    @foreach($businessPosts as $bPost)
+                    @foreach($businessPosts as $post)
                         <div class="col-md-6">
                             <div class="blog-entry">
-                                <a href="{{ route('post.show', $bPost->id) }}" class="img-link">
-                                    <img src="{{ asset('assets/images/'. $bPost->preview_img) }}" alt="Image" class="img-fluid">
+                                <a href="{{ route('post.show', $post->id) }}" class="img-link">
+                                    <img src="{{ asset('assets/images/'. $post->preview_img) }}" alt="Image" class="img-fluid">
                                 </a>
-                                <span class="date">{{ $bPost->created_at }}</span>
-                                <h2><a href="single.html">{{ $bPost->title }}</a></h2>
-                                <p>{{ \Illuminate\Support\Str::limit($bPost->content, 200) }}</p>
-                                <p><a href="{{ route('post.show', $bPost->id) }}" class="btn btn-sm btn-outline-primary">Read More</a></p>
+                                <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                                <h2><a href="single.html">{{ $post->title }}</a></h2>
+                                <p>{{ \Illuminate\Support\Str::limit($post->content, 200) }}</p>
+                                <p><a href="{{ route('post.show', $post->id) }}" class="btn btn-sm btn-outline-primary">Read More</a></p>
                             </div>
                         </div>
                     @endforeach
@@ -83,26 +83,14 @@
             </div>
             <div class="col-md-3">
                 <ul class="list-unstyled blog-entry-sm">
-                    <li>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h3><a href="single.html">Don’t assume your user data in the cloud is safe</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </li>
-
-                    <li>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h3><a href="single.html">Meta unveils fees on metaverse sales</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </li>
-
-                    <li>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h3><a href="single.html">UK sees highest inflation in 30 years</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </li>
+                    @foreach($busRelatePosts as $post)
+                        <li>
+                            <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                            <h3><a href="{{ route('post.show', $post->id) }}">{{$post->title}}</a></h3>
+                            <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
+                            <p><a href="{{ route('post.show', $post->id) }}" class="read-more">Continue Reading</a></p>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -114,50 +102,19 @@
 <section class="section posts-entry posts-entry-sm bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="{{ url('assets/images/img_1_horizontal.jpg') }}" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Thought you loved Python? Wait until you meet Rust</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
+            @foreach($randomPosts as $post)
+                <div class="col-md-6 col-lg-3">
+                    <div class="blog-entry">
+                        <a href="{{ route('post.show', $post->id) }}" class="img-link">
+                            <img src="{{ asset('assets/images/'. $post->preview_img) }}" alt="Image" class="img-fluid">
+                        </a>
+                        <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                        <h2><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></h2>
+                        <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
+                        <p><a href="{{ route('post.show', $post->id) }}" class="read-more">Continue Reading</a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="{{ url('assets/images/img_2_horizontal.jpg') }}" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Startup vs corporate: What job suits you best?</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="{{ url('assets/images/img_3_horizontal.jpg') }}" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">UK sees highest inflation in 30 years</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="single.html" class="img-link">
-                        <img src="{{ url('assets/images/img_4_horizontal.jpg') }}" alt="Image" class="img-fluid">
-                    </a>
-                    <span class="date">Apr. 14th, 2022</span>
-                    <h2><a href="single.html">Don’t assume your user data in the cloud is safe</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p><a href="#" class="read-more">Continue Reading</a></p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

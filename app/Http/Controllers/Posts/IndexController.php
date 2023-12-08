@@ -16,7 +16,11 @@ class IndexController extends Controller
         //business section
         $category = Category::where('title', 'business')->first();
         $businessPosts = Post::where('category_id', $category->id)->get()->take(2);
+        $busRelatePosts = Post::where('category_id', $category->id)->orderBy('id', 'desc')->get()->take(3);
 
-        return view('posts.index', compact('posts', 'businessPosts'));
+        //random posts
+        $randomPosts = Post::all()->random(4);
+
+        return view('posts.index', compact('posts', 'businessPosts', 'busRelatePosts', 'randomPosts'));
     }
 }
