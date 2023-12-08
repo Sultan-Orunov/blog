@@ -66,28 +66,19 @@
         <div class="row g-3">
             <div class="col-md-9">
                 <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="blog-entry">
-                            <a href="single.html" class="img-link">
-                                <img src="{{ url('assets/images/img_1_sq.jpg') }}" alt="Image" class="img-fluid">
-                            </a>
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2><a href="single.html">Thought you loved Python? Wait until you meet Rust</a></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
-                            <p><a href="single.html" class="btn btn-sm btn-outline-primary">Read More</a></p>
+                    @foreach($businessPosts as $bPost)
+                        <div class="col-md-6">
+                            <div class="blog-entry">
+                                <a href="{{ route('post.show', $bPost->id) }}" class="img-link">
+                                    <img src="{{ asset('assets/images/'. $bPost->preview_img) }}" alt="Image" class="img-fluid">
+                                </a>
+                                <span class="date">{{ $bPost->created_at }}</span>
+                                <h2><a href="single.html">{{ $bPost->title }}</a></h2>
+                                <p>{{ \Illuminate\Support\Str::limit($bPost->content, 200) }}</p>
+                                <p><a href="{{ route('post.show', $bPost->id) }}" class="btn btn-sm btn-outline-primary">Read More</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-entry">
-                            <a href="single.html" class="img-link">
-                                <img src="{{ url('assets/images/img_2_sq.jpg') }}" alt="Image" class="img-fluid">
-                            </a>
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2><a href="single.html">Startup vs corporate: What job suits you best?</a></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
-                            <p><a href="single.html" class="btn btn-sm btn-outline-primary">Read More</a></p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-3">
