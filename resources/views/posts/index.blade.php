@@ -5,49 +5,49 @@
     <div class="container">
         <div class="row align-items-stretch retro-layout">
             <div class="col-md-4">
-                @foreach($posts as $post)
-                    <a href="{{ route('post.show', $post->id) }}" class="h-entry mb-30 v-height gradient">
+                @for($i = 0; $i < 2; $i++)
+                    @if(count($posts) > $i )
+                    <a href="{{ route('post.show', $posts[$i]->id) }}" class="h-entry mb-30 v-height gradient">
 
-                        <div class="featured-img" style="background-image: url('{{ $post->preview_img }}assets/images/img_2_horizontal.jpg')"></div>
+                        <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
                         <div class="text">
-                            <span class="date">{{ $post->created_at }}</span>
-                            <h2>{{ $post->title }}</h2>
+                            <span class="date">{{ $posts[$i]->created_at }}</span>
+                            <h2>{{ $posts[$i]->title }}</h2>
                         </div>
                     </a>
-                @endforeach
-
+                    @endif
+                @endfor
             </div>
             <div class="col-md-4">
-                <a href="single.html" class="h-entry img-5 h-100 gradient">
+                @for($i = 2; $i < 4; $i++)
+                    @if(count($posts) > $i )
+                        <a href="{{ route('post.show', $posts[$i]->id) }}" class="h-entry mb-30 v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('assets/images/img_1_vertical.jpg')"></div>
+                            <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Why is my internet so slow?</h2>
-                    </div>
-                </a>
+                            <div class="text">
+                                <span class="date">{{ $posts[$i]->created_at }}</span>
+                                <h2>{{ $posts[$i]->title }}</h2>
+                            </div>
+                        </a>
+                    @endif
+                @endfor
             </div>
             <div class="col-md-4">
-                <a href="single.html" class="h-entry mb-30 v-height gradient">
+                @for($i = 4; $i < 6; $i++)
+                    @if(count($posts) > $i )
+                    <a href="{{ route('post.show', $posts[$i]->id) }}" class="h-entry mb-30 v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('assets/images/img_3_horizontal.jpg')"></div>
+                        <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $posts[$i]->preview_img) }}')"></div>
 
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Startup vs corporate: What job suits you best?</h2>
-                    </div>
-                </a>
-                <a href="single.html" class="h-entry v-height gradient">
-
-                    <div class="featured-img" style="background-image: url('assets/images/img_4_horizontal.jpg')"></div>
-
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Thought you loved Python? Wait until you meet Rust</h2>
-                    </div>
-                </a>
+                        <div class="text">
+                            <span class="date">{{ $posts[$i]->created_at }}</span>
+                            <h2>{{ $posts[$i]->title }}</h2>
+                        </div>
+                    </a>
+                    @endif
+                @endfor
             </div>
         </div>
     </div>
