@@ -29,6 +29,13 @@ class IndexController extends Controller
         //politics section
         $politCat = Category::where('title', 'politics')->first();
         $politicsPosts = Post::where('category_id', $politCat->id)->orderBy('id', 'desc')->get()->take(9);
+
+        //travel section
+        $catTravel = Category::where('title', 'travel')->first();
+        $travelPostsOne = Post::inRandomOrder()->where('category_id', $catTravel->id)->first();
+        $travelPostsTwo = Post::inRandomOrder()->where('category_id', $catTravel->id)->orderBy('id', 'desc')->first();
+        $travelPostsThree = Post::where('category_id', $catTravel->id)->orderBy('id', 'desc')->get()->take(2);
+
         return view('posts.index', compact(
             'posts',
             'businessPosts',
@@ -36,7 +43,10 @@ class IndexController extends Controller
             'randomPosts',
             'culturePosts',
             'culRelatePosts',
-            'politicsPosts'
+            'politicsPosts',
+            'travelPostsOne',
+            'travelPostsTwo',
+            'travelPostsThree'
         ));
     }
 }

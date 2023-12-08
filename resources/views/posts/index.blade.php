@@ -184,7 +184,7 @@
 
                             <h2><a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></h2>
                             <div class="post-meta align-items-center text-left clearfix">
-                                <figure class="author-figure mb-0 me-3 float-start"><img src="{{ url('assets/images/person_1.jpg') }}" alt="Image" class="img-fluid"></figure>
+{{--                                <figure class="author-figure mb-0 me-3 float-start"><img src="{{ url('assets/images/person_1.jpg') }}" alt="Image" class="img-fluid"></figure>--}}
                                 <span class="d-inline-block mt-1">By <a href="#">{{$post->user->name}}</a></span>
                                 <span>&nbsp;-&nbsp; {{ $post->created_at->diffForHumans() }}</span>
                             </div>
@@ -213,40 +213,36 @@
         <div class="row align-items-stretch retro-layout-alt">
 
             <div class="col-md-5 order-md-2">
-                <a href="single.html" class="hentry img-1 h-100 gradient">
-                    <div class="featured-img" style="background-image: url('assets/images/img_2_vertical.jpg')"></div>
+
+                <a href="{{ route('post.show', $travelPostsOne->id) }}" class="hentry img-1 h-100 gradient">
+                    <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $travelPostsOne->preview_img) }}')"></div>
                     <div class="text">
-                        <span>February 12, 2019</span>
-                        <h2>Meta unveils fees on metaverse sales</h2>
+                        <span>{{ $travelPostsOne->created_at->diffForHumans() }}</span>
+                        <h2>{{ $travelPostsOne->title }}</h2>
                     </div>
                 </a>
             </div>
 
             <div class="col-md-7">
 
-                <a href="single.html" class="hentry img-2 v-height mb30 gradient">
-                    <div class="featured-img" style="background-image: url('assets/images/img_1_horizontal.jpg') "></div>
+                <a href="{{ route('post.show', $travelPostsTwo->id) }}" class="hentry img-2 v-height mb30 gradient">
+                    <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $travelPostsTwo->preview_img) }}') "></div>
                     <div class="text text-sm">
-                        <span>February 12, 2019</span>
-                        <h2>AI can now kill those annoying cookie pop-ups</h2>
+                        <span>{{ $travelPostsTwo->created_at->diffForHumans() }}</span>
+                        <h2>{{ $travelPostsTwo->title }}</h2>
                     </div>
                 </a>
 
                 <div class="two-col d-block d-md-flex justify-content-between">
-                    <a href="single.html" class="hentry v-height img-2 gradient">
-                        <div class="featured-img" style="background-image: url('assets/images/img_2_sq.jpg')"></div>
-                        <div class="text text-sm">
-                            <span>February 12, 2019</span>
-                            <h2>Don’t assume your user data in the cloud is safe</h2>
-                        </div>
-                    </a>
-                    <a href="single.html" class="hentry v-height img-2 ms-auto float-end gradient">
-                        <div class="featured-img" style="background-image: url('assets/images/img_3_sq.jpg')"></div>
-                        <div class="text text-sm">
-                            <span>February 12, 2019</span>
-                            <h2>Startup vs corporate: What job suits you best?</h2>
-                        </div>
-                    </a>
+                    @foreach($travelPostsThree as $post)
+                        <a href="{{ route('post.show', $post->id) }}" class="hentry v-height img-2 gradient">
+                            <div class="featured-img" style="background-image: url('{{ asset('assets/images/'. $post->preview_img) }}')"></div>
+                            <div class="text text-sm">
+                                <span>{{ $post->created_at->diffForHumans() }}</span>
+                                <h2>{{ $post->title }}</h2>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
 
             </div>
