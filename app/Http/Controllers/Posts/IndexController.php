@@ -21,6 +21,18 @@ class IndexController extends Controller
         //random posts
         $randomPosts = Post::all()->random(4);
 
-        return view('posts.index', compact('posts', 'businessPosts', 'busRelatePosts', 'randomPosts'));
+        //culture section
+        $catCulture = Category::where('title', 'culture')->first();
+        $culturePosts = Post::where('category_id', $catCulture->id)->get()->take(2);
+        $culRelatePosts = Post::where('category_id', $catCulture->id)->orderBy('id', 'desc')->get()->take(3);
+
+        return view('posts.index', compact(
+            'posts',
+            'businessPosts',
+            'busRelatePosts',
+            'randomPosts',
+            'culturePosts',
+            'culRelatePosts'
+        ));
     }
 }
