@@ -26,13 +26,17 @@ class IndexController extends Controller
         $culturePosts = Post::where('category_id', $catCulture->id)->get()->take(2);
         $culRelatePosts = Post::where('category_id', $catCulture->id)->orderBy('id', 'desc')->get()->take(3);
 
+        //politics section
+        $politCat = Category::where('title', 'politics')->first();
+        $politicsPosts = Post::where('category_id', $politCat->id)->orderBy('id', 'desc')->get()->take(9);
         return view('posts.index', compact(
             'posts',
             'businessPosts',
             'busRelatePosts',
             'randomPosts',
             'culturePosts',
-            'culRelatePosts'
+            'culRelatePosts',
+            'politicsPosts'
         ));
     }
 }
