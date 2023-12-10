@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <!-- END sidebar-box -->
-                    <div class="sidebar-box">
+                    <div style="padding: 20px" class="sidebar-box">
                         <h3 class="heading">Recent Posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
@@ -151,7 +151,7 @@
                     </div>
                     <!-- END sidebar-box -->
 
-                    <div class="sidebar-box">
+                    <div style="padding: 20px" class="sidebar-box">
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             @foreach($categories as $category)
