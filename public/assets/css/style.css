@@ -9752,7 +9752,8 @@ textarea {
 
 .section {
   padding-top: 4rem;
-  padding-bottom: 4rem; }
+  padding-bottom: 4rem;
+}
   .section .heading {
     font-size: 30px;
     font-weight: 700; }
@@ -10100,8 +10101,7 @@ textarea {
   margin-bottom: 4em;
   font-size: 15px;
   width: 100%;
-  float: left;
-  background: #fff; }
+  float: left; }
   .sidebar-box *:last-child {
     margin-bottom: 0; }
   .sidebar-box .heading {

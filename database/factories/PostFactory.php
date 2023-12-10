@@ -39,7 +39,6 @@ class PostFactory extends Factory
             'preview_img' => fake()->randomElement($prevImg),
             'title' => fake()->sentence(8),
             'content' => fake()->text(1000),
-
         ];
     }
 }
