@@ -22,6 +22,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'posts'], function () {
-    Route::get('/', \App\Http\Controllers\Posts\IndexController::class)->name('post.index');
-    Route::get('/{post}', \App\Http\Controllers\Posts\ShowController::class)->name('post.show');
+    Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
+    Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
+
+    Route::group(['prefix' => '{post}/comments'], function (){
+        Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');
+    });
 });
