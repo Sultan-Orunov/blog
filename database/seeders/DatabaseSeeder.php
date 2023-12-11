@@ -17,13 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-//         \App\Models\User::factory()->create([
-//             'name' => 'Admin',
-//             'email' => 'admin@mail.ru',
-//         ]);
-//
-//        Category::factory(4)->create();
-//        Post::factory(50)->create();
+         \App\Models\User::factory()->create([
+             'name' => 'Admin',
+             'email' => 'admin@mail.ru',
+         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@mail.ru',
+        ]);
+
+        Category::factory(4)->create();
+        Post::factory(50)->create();
         Comment::factory(500)->create();
     }
 }

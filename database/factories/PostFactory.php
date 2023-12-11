@@ -33,7 +33,7 @@ class PostFactory extends Factory
             'img_6_horizontal.jpg',
         ];
         return [
-            'user_id' => 1,
+            'user_id' => fake()->numberBetween(1, 2),
             'category_id' => fake()->numberBetween(1, 4),
             'main_img' => fake()->randomElement($mainImg),
             'preview_img' => fake()->randomElement($prevImg),

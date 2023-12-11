@@ -23,7 +23,7 @@ class CommentFactory extends Factory
             $id[] = $post->id;
         }
         return [
-            'user_id' => 1,
+            'user_id' => fake()->numberBetween(1, 2),
             'post_id' => fake()->randomElement($id),
             'comment' => fake()->sentence(10)
         ];
