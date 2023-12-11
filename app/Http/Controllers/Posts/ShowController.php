@@ -12,6 +12,13 @@ class ShowController extends Controller
     {
         $recentPosts = Post::take(3)->orderBy('id', 'desc')->get();
         $categories = Category::all();
-        return view('posts.show', compact('post', 'recentPosts', 'categories'));
+
+        $morePosts = Post::where('category_id', $post->category->id)
+            ->where('id', '!=', $post->id)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('posts.show', compact('post', 'recentPosts', 'categories', 'morePosts'));
     }
 }

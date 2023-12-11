@@ -153,50 +153,19 @@
                 <div class="col-12 text-uppercase text-black">More Blog Posts</div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="blog-entry">
-                        <a href="single.html" class="img-link">
-                            <img src="images/img_1_horizontal.jpg" alt="Image" class="img-fluid">
-                        </a>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2><a href="single.html">Thought you loved Python? Wait until you meet Rust</a></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
+                @foreach($morePosts as $post)
+                    <div class="col-md-6 col-lg-3">
+                        <div class="blog-entry">
+                            <a href="{{route('post.show', $post->id)}}" class="img-link">
+                                <img src="{{ asset('assets/images/'.$post->preview_img) }}" alt="Image" class="img-fluid">
+                            </a>
+                            <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                            <h2><a href="{{route('post.show', $post->id)}}">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</a></h2>
+                            <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
+                            <p><a href="{{route('post.show', $post->id)}}" class="read-more">Continue Reading</a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="blog-entry">
-                        <a href="single.html" class="img-link">
-                            <img src="images/img_2_horizontal.jpg" alt="Image" class="img-fluid">
-                        </a>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2><a href="single.html">Startup vs corporate: What job suits you best?</a></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="blog-entry">
-                        <a href="single.html" class="img-link">
-                            <img src="images/img_3_horizontal.jpg" alt="Image" class="img-fluid">
-                        </a>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2><a href="single.html">UK sees highest inflation in 30 years</a></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="blog-entry">
-                        <a href="single.html" class="img-link">
-                            <img src="images/img_4_horizontal.jpg" alt="Image" class="img-fluid">
-                        </a>
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2><a href="single.html">Don’t assume your user data in the cloud is safe</a></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <p><a href="#" class="read-more">Continue Reading</a></p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
