@@ -34,6 +34,10 @@
                         <p>Category: <a href="#">{{ ucfirst($post->category->title) }}</a></p>
                     </div>
 
+                    @if(\Illuminate\Support\Facades\Session::has('success'))
+                        <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
+                    @endif
+
                     <div class="pt-5 comment-wrap">
                         <h3 class="mb-5 heading">{{ count($post->comments) }} Comments</h3>
                         <ul class="comment-list">
@@ -145,19 +149,25 @@
                 <div class="col-12 text-uppercase text-black">More Blog Posts</div>
             </div>
             <div class="row">
-                @foreach($morePosts as $post)
-                    <div class="col-md-6 col-lg-3">
-                        <div class="blog-entry">
-                            <a href="{{route('post.show', $post->id)}}" class="img-link">
-                                <img src="{{ asset('assets/images/'.$post->preview_img) }}" alt="Image" class="img-fluid">
-                            </a>
-                            <span class="date">{{ $post->created_at->diffForHumans() }}</span>
-                            <h2><a href="{{route('post.show', $post->id)}}">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</a></h2>
-                            <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
-                            <p><a href="{{route('post.show', $post->id)}}" class="read-more">Continue Reading</a></p>
+                @if($morePosts->count() > 0)
+                    @foreach($morePosts as $post)
+                        <div class="col-md-6 col-lg-3">
+                            <div class="blog-entry">
+                                <a href="{{route('post.show', $post->id)}}" class="img-link">
+                                    <img src="{{ asset('assets/images/'.$post->preview_img) }}" alt="Image" class="img-fluid">
+                                </a>
+                                <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                                <h2><a href="{{route('post.show', $post->id)}}">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</a></h2>
+                                <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
+                                <p><a href="{{route('post.show', $post->id)}}" class="read-more">Continue Reading</a></p>
+                            </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="text-center">
+                        No more posts in this category
                     </div>
-                @endforeach
+                @endif
             </div>
         </div>
     </section>
