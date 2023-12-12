@@ -26,7 +26,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('/create', \App\Http\Controllers\Post\CreateController::class)->name('post.create');
     Route::post('/', \App\Http\Controllers\Post\StoreController::class)->name('post.store');
     Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
-
+    Route::get('/{post}/edit', \App\Http\Controllers\Post\EditController::class)->name('post.edit');
+//    Route::patch('/{post}', \App\Http\Controllers\Post\UpdateController::class)->name('post.update');
     Route::delete('{post}', \App\Http\Controllers\Post\DeleteController::class)->name('post.delete');
 
 

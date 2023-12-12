@@ -4,6 +4,9 @@
     <div class="site-cover site-cover-sm same-height overlay single-page" style="margin-top: -25px; background-image: url('{{ asset('assets/images/'. $post->main_img) }}');">
         <div class="container">
             <div class="row same-height justify-content-center">
+                @if(\Illuminate\Support\Facades\Session::has('success'))
+                    <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
+                @endif
                 <div class="col-md-6">
                     <div class="post-entry text-center">
                         <h1 class="mb-4">{{ $post->title }}</h1>
@@ -36,11 +39,12 @@
 
                     @auth
                         @if(\Illuminate\Support\Facades\Auth::user()->id == $post->user->id)
-                            <div>
+                            <div style="display: flex;">
                                 <form action="{{ route('post.delete', $post->id) }}" method="post">
                                     @csrf @method('delete')
                                     <button class="btn btn-danger" type="submit">Delete Post</button>
-                                </form>
+                                </form>&nbsp;&nbsp;
+                                <a class="btn btn-warning text-white" href="{{ route('post.edit', $post->id) }}">Edit Post</a>
                             </div>
                         @endif
                     @endauth
