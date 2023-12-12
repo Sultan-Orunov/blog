@@ -4,6 +4,9 @@
 <section class="section bg-light">
     <div class="container">
         <div class="row align-items-stretch retro-layout">
+            @if(\Illuminate\Support\Facades\Session::has('delete'))
+                <div class="alert alert-success ">{{ \Illuminate\Support\Facades\Session::get('delete') }}</div>
+            @endif
             @if($posts->count() > 0)
                 <div class="col-md-4">
                     @for($i = 0; $i < 2; $i++)

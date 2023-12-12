@@ -50,7 +50,9 @@
                                     <li><a href="category.html">Culture</a></li>
                                     <li><a href="category.html">Business</a></li>
                                     <li><a href="category.html">Politics</a></li>
+                                    @auth
                                     <li><a href="{{ route('post.create') }}">Create Post</a></li>
+                                    @endauth
                                     <li><a href="contact.html">Contact Us</a></li>
                                     <li><a href="about.html">About Us</a></li>
                                     @guest

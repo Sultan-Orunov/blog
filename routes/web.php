@@ -27,6 +27,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::post('/', \App\Http\Controllers\Post\StoreController::class)->name('post.store');
     Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
 
+    Route::delete('{post}', \App\Http\Controllers\Post\DeleteController::class)->name('post.delete');
+
 
     Route::group(['prefix' => '{post}/comments'], function (){
         Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');

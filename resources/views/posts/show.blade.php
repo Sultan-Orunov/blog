@@ -34,10 +34,21 @@
                         <p>Category: <a href="#">{{ ucfirst($post->category->title) }}</a></p>
                     </div>
 
+                    @auth
+                        @if(\Illuminate\Support\Facades\Auth::user()->id == $post->user->id)
+                            <div>
+                                <form action="{{ route('post.delete', $post->id) }}" method="post">
+                                    @csrf @method('delete')
+                                    <button class="btn btn-danger" type="submit">Delete Post</button>
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
+
                     @if(\Illuminate\Support\Facades\Session::has('success'))
                         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
                     @endif
-
+                    @auth
                     <div class="pt-5 comment-wrap">
                         <h3 class="mb-5 heading">{{ count($post->comments) }} Comments</h3>
                         <ul class="comment-list">
@@ -76,7 +87,45 @@
                             </form>
                         </div>
                     </div>
+                    <div class="pt-5 comment-wrap">
+                        <h3 class="mb-5 heading">{{ count($post->comments) }} Comments</h3>
+                        <ul class="comment-list">
+                            @foreach( $post->comments->reverse() as $comment)
+                                <li class="comment">
+                                    <div class="vcard">
+                                        <img src="{{ $post->user->image ? $post->user->image : asset('assets/images/no_avatar.png') }}" alt="Image placeholder">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>{{ $comment->user->name }}</h3>
+                                        <div class="meta">{{ $comment->created_at->diffForHumans() }}</div>
+                                        <p>{{ $comment->comment }}</p>
+                                        <p><a href="#" class="reply rounded">Reply</a></p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <!-- END comment-list -->
 
+                        <div class="comment-form-wrap pt-5">
+                            <h3 class="mb-5">Leave a comment</h3>
+                            <form action="{{ route('post.comment.store', $post->id) }}" method="post" class="p-5 bg-light">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="comment" id="message" cols="30" rows="10" class="form-control">{{ old('comment') }}</textarea>
+                                    @error('comment')
+                                        <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Post Comment" class="btn btn-primary">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    @endauth
                 </div>
 
                 <!-- END main-content -->
