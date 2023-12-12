@@ -23,7 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
+    Route::get('/create', \App\Http\Controllers\Post\CreateController::class)->name('post.create');
+
     Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
+
 
     Route::group(['prefix' => '{post}/comments'], function (){
         Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');
