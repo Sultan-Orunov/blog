@@ -23,7 +23,7 @@ class IndexController extends Controller
 
         //culture section
         $catCulture = Category::where('title', 'culture')->first();
-        $culturePosts = Post::where('category_id', $catCulture->id)->get()->take(2);
+        $culturePosts = Post::where('category_id', $catCulture->id)->orderBy('id', 'desc')->get()->take(2);
         $culRelatePosts = Post::where('category_id', $catCulture->id)->orderBy('id', 'desc')->get()->take(3);
 
         //politics section

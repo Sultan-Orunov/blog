@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
     Route::get('/create', \App\Http\Controllers\Post\CreateController::class)->name('post.create');
-
+    Route::post('/', \App\Http\Controllers\Post\StoreController::class)->name('post.store');
     Route::get('/{post}', \App\Http\Controllers\Post\ShowController::class)->name('post.show');
 
 
