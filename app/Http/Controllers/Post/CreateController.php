@@ -10,7 +10,11 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::all();
-        return view('posts.create', compact('categories'));
+        if (auth()->user()){
+            $categories = Category::all();
+            return view('posts.create', compact('categories'));
+        }else{
+            return redirect()->route('login');
+        }
     }
 }

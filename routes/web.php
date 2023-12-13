@@ -13,13 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/contact', \App\Http\Controllers\Contact\ShowController::class)->name('contact');
+Route::get('/about', \App\Http\Controllers\About\ShowController::class)->name('about');
+
+
 
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', \App\Http\Controllers\Post\IndexController::class)->name('post.index');
