@@ -48,7 +48,7 @@
                                     @auth
                                     <li class="active"><a href="{{ route('home') }}">Home</a></li>
                                     @endauth
-                                    <li><a href="category.html">Culture</a></li>
+                                    <li><a href="{{ route('categories.culture.index', 1) }}">Culture</a></li>
                                     <li><a href="category.html">Business</a></li>
                                     <li><a href="category.html">Politics</a></li>
                                     @auth

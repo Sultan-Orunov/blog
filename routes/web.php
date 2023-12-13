@@ -38,3 +38,7 @@ Route::group(['prefix' => 'posts'], function () {
         Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');
     });
 });
+
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/culture/{category}', \App\Http\Controllers\Category\Culture\IndexController::class)->name('categories.culture.index');
+});
