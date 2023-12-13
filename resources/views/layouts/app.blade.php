@@ -50,7 +50,8 @@
                                     @endauth
                                     <li><a href="{{ route('categories.culture.index', 1) }}">Culture</a></li>
                                     <li><a href="{{ route('categories.business.index', 3) }}">Business</a></li>
-                                    <li><a href="category.html">Politics</a></li>
+                                    <li><a href="{{ route('categories.politics.index', 4) }}">Politics</a></li>
+                                    <li><a href="">Travel</a></li>
                                     @auth
                                     <li><a href="{{ route('post.create') }}">Create Post</a></li>
                                     @endauth
