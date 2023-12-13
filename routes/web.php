@@ -41,4 +41,5 @@ Route::group(['prefix' => 'posts'], function () {
 
 Route::group(['prefix' => 'categories'], function () {
     Route::get('/culture/{category}', \App\Http\Controllers\Category\Culture\IndexController::class)->name('categories.culture.index');
+    Route::get('/business/{category}', \App\Http\Controllers\Category\Business\IndexController::class)->name('categories.business.index');
 });
