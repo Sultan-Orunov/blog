@@ -16,7 +16,7 @@
                                 <img src="{{ asset('assets/images/'. $post->preview_img) }}" alt="Image" class="img-fluid">
                             </a>
                             <div>
-                                <span class="date">{{ $post->created_at->diffForHumans() }} &bullet; <a href="{{ route('categories.culture.index', $post->category->id) }}">{{ $post->category->title }}</a></span>
+                                <span class="date">{{ $post->created_at->diffForHumans() }} &bullet; <a href="{{ route('categories.culture.index', $post->category->id) }}">{{ ucfirst($post->category->title) }}</a></span>
                                 <h2><a href="{{ route('post.show', $post->id) }}">{{ \Illuminate\Support\Str::limit($post->title, 50) }}</a></h2>
                                 <p>{{ \Illuminate\Support\Str::limit($post->content, 100) }}</p>
                                 <p><a href="{{ route('post.show', $post->id) }}" class="btn btn-sm btn-outline-primary">Read More</a></p>
@@ -55,7 +55,7 @@
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             @foreach($categories as $category)
-                                <li><a class="text-decoration-none text-secondary" href="#">{{ $category->title }}<span>{{count($category->posts)}}</span></a></li>
+                                <li><a class="text-decoration-none text-secondary" href="{{ route("categories.". $category->title. ".index", $category->id) }}">{{ ucfirst($category->title) }}<span>{{count($category->posts)}}</span></a></li>
                             @endforeach
                         </ul>
                     </div>
