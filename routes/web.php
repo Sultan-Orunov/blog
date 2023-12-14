@@ -44,5 +44,6 @@ Route::group(['prefix' => 'posts'], function () {
 Route::get('/categories/{category}', \App\Http\Controllers\Post\Category\IndexController::class)->name('category.posts');
 
 Route::group(['prefix' => 'users'], function () {
-    Route::get('/{user}/edit', [\App\Http\Controllers\User\UserController::class, 'edit'])->name('user.edit');
+    Route::get('/{user}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 });
