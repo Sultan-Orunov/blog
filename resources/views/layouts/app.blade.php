@@ -48,10 +48,10 @@
                                     @auth
                                     <li class="active"><a href="{{ route('home') }}">Home</a></li>
                                     @endauth
-                                    <li><a href="{{ route('categories.culture.index', 1) }}">Culture</a></li>
-                                    <li><a href="{{ route('categories.business.index', 3) }}">Business</a></li>
-                                    <li><a href="{{ route('categories.politics.index', 4) }}">Politics</a></li>
-                                    <li><a href="{{ route('categories.travel.index', 2) }}">Travel</a></li>
+                                    <li><a href="{{ route('category.posts', 1) }}">Culture</a></li>
+                                    <li><a href="{{ route('category.posts', 3) }}">Business</a></li>
+                                    <li><a href="{{ route('category.posts', 4) }}">Politics</a></li>
+                                    <li><a href="{{ route('category.posts', 2) }}">Travel</a></li>
                                     @auth
                                     <li><a href="{{ route('post.create') }}">Create Post</a></li>
                                     @endauth

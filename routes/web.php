@@ -37,11 +37,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::group(['prefix' => '{post}/comments'], function (){
         Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');
     });
+
+
 });
 
-Route::group(['prefix' => 'categories'], function () {
-    Route::get('/culture/{category}', \App\Http\Controllers\Category\Culture\IndexController::class)->name('categories.culture.index');
-    Route::get('/business/{category}', \App\Http\Controllers\Category\Business\IndexController::class)->name('categories.business.index');
-    Route::get('/politics/{category}', \App\Http\Controllers\Category\Politics\IndexController::class)->name('categories.politics.index');
-    Route::get('/travel/{category}', \App\Http\Controllers\Category\Travel\IndexController::class)->name('categories.travel.index');
-});
+Route::get('/categories/{category}', \App\Http\Controllers\Post\Category\IndexController::class)->name('category.posts');
