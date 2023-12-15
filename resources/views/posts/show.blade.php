@@ -4,9 +4,6 @@
     <div class="site-cover site-cover-sm same-height overlay single-page" style="margin-top: -25px; background-image: url('{{ asset('assets/images/'. $post->main_img) }}');">
         <div class="container">
             <div class="row same-height justify-content-center">
-                @if(\Illuminate\Support\Facades\Session::has('success'))
-                    <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
-                @endif
                 <div class="col-md-6">
                     <div class="post-entry text-center">
                         <h1 class="mb-4">{{ $post->title }}</h1>
@@ -25,12 +22,13 @@
         <div class="container">
 
             <div class="row blog-entries element-animate">
-
+                @if(\Illuminate\Support\Facades\Session::has('post-update'))
+                    <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('post-update') }}</div>
+                @endif
                 <div class="col-md-12 col-lg-8 main-content">
 
                     <div class="post-content-body">
                         <p>{{ $post->content }}</p>
-
                     </div>
 
                     <div class="pt-5">

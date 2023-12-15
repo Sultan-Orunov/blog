@@ -4,8 +4,8 @@
         <div class="container">
             <div class="comment-form-wrap pt-5">
                 <h3 class="mb-3">Create a New Post</h3>
-                <form action="" method="post" class="p-5 bg-light" enctype="multipart/form-data">
-                    @csrf
+                <form action="{{ route('post.update', $post->id) }}" method="post" class="p-5 bg-light" enctype="multipart/form-data">
+                    @csrf @method('PATCH')
                     <input name="user_id" value="{{ $post->user_id }}" type="hidden" class="form-control">
 
                     <div class="form-group">
