@@ -52,3 +52,8 @@ Route::group(['prefix' => 'users'], function () {
 
 
 });
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/login', \App\Http\Controllers\Admin\CreateController::class)->name('admin.create');
+
+});
