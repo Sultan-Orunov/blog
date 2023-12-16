@@ -54,6 +54,7 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 Route::group(['prefix' => 'admin'], function (){
+    Route::get('/', \App\Http\Controllers\Admin\IndexController::class)->name('admin.index');
     Route::get('/login', \App\Http\Controllers\Admin\CreateController::class)->name('admin.create');
-
+    Route::post('/', \App\Http\Controllers\Admin\StoreController::class)->name('admin.store');
 });
