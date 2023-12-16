@@ -22,50 +22,62 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav side-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="categories-admins/show-categories.html" style="margin-left: 20px;">Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="posts-admins/show-posts.html" style="margin-left: 20px;">Posts</a>
-                    </li>
-                    <!--  <li class="nav-item">
-                       <a class="nav-link" href="#" style="margin-left: 20px;">Comments</a>
-                     </li> -->
-                </ul>
+                @auth('admin')
+                    <ul class="navbar-nav side-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="categories-admins/show-categories.html" style="margin-left: 20px;">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="posts-admins/show-posts.html" style="margin-left: 20px;">Posts</a>
+                        </li>
+                        <!--  <li class="nav-item">
+                           <a class="nav-link" href="#" style="margin-left: 20px;">Comments</a>
+                         </li> -->
+                    </ul>
+                @endauth
                 <ul class="navbar-nav ml-md-auto d-md-flex">
+                    @auth('admin')
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admins/login-admins.html">login
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ auth()->guard('admin')->user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
-
-
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.login') }}">login
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </div>
+
     </nav>
     <div class="container-fluid">
 

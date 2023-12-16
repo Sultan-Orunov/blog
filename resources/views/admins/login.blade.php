@@ -9,7 +9,7 @@
                     @if(\Illuminate\Support\Facades\Session::has('error'))
                         <div class="alert alert-danger">{{ \Illuminate\Support\Facades\Session::get('error') }}</div>
                     @endif
-                    <form method="POST" class="p-auto" action="{{ route('admin.store') }}">
+                    <form method="POST" class="p-auto" action="{{ route('admin.auth') }}">
                         @csrf
                         <!-- Email input -->
                         <div class="form-outline mb-4">
