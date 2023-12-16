@@ -14,7 +14,7 @@
 <div id="wrapper">
     <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+            <a class="navbar-brand" href="{{ route('post.index') }}">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -25,12 +25,12 @@
                 @auth('admin')
                     <ul class="navbar-nav side-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
+                            <a class="nav-link text-white" style="margin-left: 20px;" href="{{ route('admin.dashboard') }}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                            <a class="nav-link" href="{{ route('admin.show-admins') }}" style="margin-left: 20px;">Admins</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="categories-admins/show-categories.html" style="margin-left: 20px;">Categories</a>
@@ -46,7 +46,7 @@
                 <ul class="navbar-nav ml-md-auto d-md-flex">
                     @auth('admin')
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
