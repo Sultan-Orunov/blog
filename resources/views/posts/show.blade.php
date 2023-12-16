@@ -3,12 +3,12 @@
 @section('content')
     <div class="site-cover site-cover-sm same-height overlay single-page" style="margin-top: -25px; background-image: url('{{ asset('assets/images/'. $post->main_img) }}');">
         <div class="container">
-            <div class="row same-height justify-content-center">
+            <div class="row same-height">
                 <div class="col-md-6">
-                    <div class="post-entry text-center">
-                        <h1 class="mb-4">{{ $post->title }}</h1>
-                        <div class="post-meta align-items-center text-center">
-                            <figure class="author-figure mb-0 me-3 d-inline-block"><img src="{{ $post->user->image ? $post->user->image : asset('assets/images/no_avatar.png') }}" alt="Image" class="img-fluid"></figure>
+                    <div class="post-entry">
+                        <h1 style="width: 60rem" class="mb-4">{{ $post->title }}</h1>
+                        <div class="post-meta align-items-center">
+                            <figure  class="author-figure mb-0 me-3 d-inline-block"><img src="{{ $post->user->image ? asset('assets/images/user/'.$post->user->image) : asset('assets/images/no_avatar.png') }}" alt="Image" class="img-fluid"></figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->diffForHumans() }}</span>
                         </div>
@@ -101,11 +101,11 @@
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <div class="bio text-center">
-                            <img src="{{ $post->user->image ? $post->user->image : asset('assets/images/no_avatar.png') }}" alt="Image Placeholder" class="img-fluid my-3">
+                            <img src="{{ $post->user->image ? asset('assets/images/user/'.$post->user->image) : asset('assets/images/no_avatar.png') }}" alt="Image Placeholder" class="img-fluid my-3">
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>
                                 <p class="mb-4 mx-3">{{ \Illuminate\Support\Str::limit($post->user->bio, 200) }}</p>
-                                <p><a href="#" class="btn btn-primary btn-sm rounded px-2 py-2">Read my bio</a></p>
+                                <p><a href="{{ route('user.show', $post->user->id) }}" class="btn btn-primary btn-sm rounded px-2 py-2">Read my bio</a></p>
                                 <p class="social">
                                     <a href="#" class="p-2"><i class="fa fa-facebook"></i></a>
                                     <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
