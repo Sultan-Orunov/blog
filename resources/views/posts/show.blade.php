@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="pt-5">
-                        <p>Category: <a href="#">{{ ucfirst($post->category->title) }}</a></p>
+                        <p>Category: <a href="{{route('category.posts', $post->category->id)}}">{{ ucfirst($post->category->title) }}</a></p>
                     </div>
 
                     @auth
@@ -58,7 +58,7 @@
                             @foreach( $post->comments->reverse()->take(5) as $comment)
                                 <li class="comment">
                                     <div class="vcard">
-                                        <img src="{{ $post->user->image ? $post->user->image : asset('assets/images/no_avatar.png') }}" alt="Image placeholder">
+                                        <img src="{{ $post->user->image ? asset('assets/images/user/'.$post->user->image) : asset('assets/images/no_avatar.png') }}" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
                                         <h3>{{ $comment->user->name }}</h3>

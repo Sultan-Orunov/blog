@@ -33,6 +33,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::patch('/{post}', \App\Http\Controllers\Post\UpdateController::class)->name('post.update');
     Route::delete('{post}', \App\Http\Controllers\Post\DeleteController::class)->name('post.delete');
 
+    Route::post('/search', \App\Http\Controllers\Post\SearchController::class)->name('post.search');
+
 
     Route::group(['prefix' => '{post}/comments'], function (){
         Route::post('/', \App\Http\Controllers\Post\Comment\StoreController::class)->name('post.comment.store');

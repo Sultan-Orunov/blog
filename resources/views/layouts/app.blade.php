@@ -16,6 +16,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}">
@@ -72,6 +73,9 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('user.show', auth()->user()->id) }}">
+                                                    {{ __('Show Profile') }}
+                                                </a>
                                                 <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}">
                                                     {{ __('Update Profile') }}
                                                 </a>
@@ -92,13 +96,15 @@
 
                             </div>
                             <div class="col-2 text-end">
-                                <a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
-                                    <span></span>
-                                </a>
-                                <form action="#" class="search-form d-none d-lg-inline-block">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="bi-search"></span>
+
+                                <form action="{{ route('post.search') }}" method="POST" class="search-form d-none d-lg-inline-block">
+                                    @csrf
+                                    <input name="search" type="text" class="form-control text-white" placeholder="Search...">
+                                    <span class="bi-search"><i class="fa fa-search"></i></span>
                                 </form>
+                                @error('search')
+                                    <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

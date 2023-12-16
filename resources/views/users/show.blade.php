@@ -24,7 +24,7 @@
 
                 <div class="col-md-12 col-lg-4 sidebar">
                     <div style="padding: 20px" class="sidebar-box">
-                        <h3 class="heading">Recent Posts</h3>
+                        <h3 class="heading">Latest Posts by: {{ $user->name }}</h3>
 
                         @if($user->posts->count() > 0)
                             <div class="post-entry-sidebar">
