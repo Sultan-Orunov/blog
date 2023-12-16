@@ -30,4 +30,9 @@ class AdminController extends Controller
         Admin::create($data);
         return redirect()->route('admin.show')->with('admin-create', 'Created Successfully');
     }
+
+    public function delete(Admin $admin){
+        $admin->delete();
+        return redirect()->route('admin.show')->with('admin-delete', 'Deleted Successfully');
+    }
 }

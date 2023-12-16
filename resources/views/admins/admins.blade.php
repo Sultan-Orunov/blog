@@ -10,6 +10,9 @@
                     @if(\Illuminate\Support\Facades\Session::has('admin-create'))
                         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('admin-create') }}</div>
                     @endif
+                    @if(\Illuminate\Support\Facades\Session::has('admin-delete'))
+                        <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('admin-delete') }}</div>
+                    @endif
 
                     <a  href="{{ route('admin.create') }}" class="btn btn-primary mb-4 text-center float-right">Create Admins</a>
                     <table class="table">
@@ -27,7 +30,12 @@
                                 <th scope="row">{{ $admin->id }}</th>
                                 <td>{{ $admin->name }}</td>
                                 <td>{{ $admin->email }}</td>
-                                <td>Действия</td>
+                                <td>
+                                    <form method="post" action="{{ route('admin.delete', $admin->id) }}">
+                                        @csrf @method('delete')
+                                        <button class="bg-transparent text-danger border-0 btn" type="submit"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
 
                             </tr>
                         @endforeach
