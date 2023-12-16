@@ -59,5 +59,7 @@ Route::group(['prefix' => 'users'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function (){
     Route::get('/', \App\Http\Controllers\Admin\IndexController::class)->name('admin.dashboard');
 
-    Route::get('/show-admins', [\App\Http\Controllers\Admin\ShowController::class, 'admins'])->name('admin.show-admins');
+    Route::get('/show', [\App\Http\Controllers\Admin\AdminController::class, 'admins'])->name('admin.show');
+    Route::get('/create', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name('admin.create');
+    Route::post('/', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.store');
 });
