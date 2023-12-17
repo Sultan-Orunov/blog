@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,9 +65,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::get('/dashboard', \App\Http\Controllers\Admin\IndexController::class)->name('admin.dashboard');
 
     Route::get('/show', [\App\Http\Controllers\Admin\AdminController::class, 'admins'])->name('admin.show');
-    Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/create', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name('admin.create');
     Route::post('/', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.store');
+    Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.logout');
     Route::delete('/{admin}', [\App\Http\Controllers\Admin\AdminController::class, 'delete'])->name('admin.delete');
 
     Route::group(['prefix' => 'categories'], function () {
@@ -76,5 +77,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
         Route::get('/{category}/edit', [CategoriesController::class, 'edit'])->name('admin.category.edit');
         Route::patch('/{category}', [CategoriesController::class, 'update'])->name('admin.category.update');
         Route::delete('/{category}', [CategoriesController::class, 'delete'])->name('admin.category.delete');
+    });
+
+    Route::group(['prefix' => 'posts'], function () {
+        Route::get('/', [PostsController::class, 'index'])->name('admin.post.index');
+        Route::delete('/{post}', [PostsController::class, 'delete'])->name('admin.post.delete');
     });
 });

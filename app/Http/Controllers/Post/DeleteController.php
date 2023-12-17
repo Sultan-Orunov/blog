@@ -10,7 +10,13 @@ class DeleteController extends Controller
 {
     public function __invoke(Post $post)
     {
+        $mainImagePath = public_path('assets/images' . $post->main_img);
+        unlink($mainImagePath);
+        $previewImagePath = public_path('assets/images' . $post->preview_img);
+        unlink($previewImagePath);
+
         $post->delete();
+
         return redirect()->route('post.index')->with('delete', 'Post deleted successfully');
     }
 }
