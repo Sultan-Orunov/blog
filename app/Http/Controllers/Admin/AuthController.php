@@ -11,10 +11,10 @@ class AuthController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-
         if (auth()->guard('admin')->attempt(['email' => $data["email"], 'password' => $data["password"]])) {
             return redirect() -> route('admin.dashboard');
+        }else {
+            return redirect()->back()->with(['error' => 'Authorization Error']);
         }
-        return redirect()->back()->with(['error' => 'error logging in']);
     }
 }

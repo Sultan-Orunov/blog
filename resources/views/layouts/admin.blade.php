@@ -58,8 +58,7 @@
                             {{ auth()->guard('admin')->user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}">
                                 {{ __('Logout') }}
                             </a>
 
@@ -70,7 +69,7 @@
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.login') }}">login
+                        <a class="nav-link" href="{{ route('login_form') }}">login
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>

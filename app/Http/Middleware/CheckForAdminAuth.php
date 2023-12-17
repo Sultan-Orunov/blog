@@ -16,11 +16,11 @@ class CheckForAdminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->url('admin/login')){
-            if (isset(Auth::guard('admin')->user()->name)){
-                return redirect()->route('admin.dashboard');
-            }
+
+        if (!Auth::guard('admin')->check()){
+            return redirect()->route('admin.login')->with('error', 'Plz Login First');
         }
+
         return $next($request);
     }
 }

@@ -53,13 +53,13 @@ Route::group(['prefix' => 'users'], function () {
 
 });
 
-    Route::get('admin/login', \App\Http\Controllers\Admin\LoginController::class)->name('admin.login')->middleware('admin');
-    Route::post('admin/', \App\Http\Controllers\Admin\AuthController::class)->name('admin.auth');
-
-Route::group(['prefix' => 'admins', 'middleware' => 'auth:admin'], function (){
-    Route::get('/', \App\Http\Controllers\Admin\IndexController::class)->name('admin.dashboard');
+    Route::get('admin/login', \App\Http\Controllers\Admin\LoginController::class)->name('login_form');
+    Route::post('admin/login', \App\Http\Controllers\Admin\AuthController::class)->name('admin.login');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
+    Route::get('/dashboard', \App\Http\Controllers\Admin\IndexController::class)->name('admin.dashboard');
 
     Route::get('/show', [\App\Http\Controllers\Admin\AdminController::class, 'admins'])->name('admin.show');
+    Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/create', [\App\Http\Controllers\Admin\AdminController::class, 'create'])->name('admin.create');
     Route::post('/', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.store');
     Route::delete('/{admin}', [\App\Http\Controllers\Admin\AdminController::class, 'delete'])->name('admin.delete');

@@ -9,7 +9,10 @@
                     @if(\Illuminate\Support\Facades\Session::has('error'))
                         <div class="alert alert-danger">{{ \Illuminate\Support\Facades\Session::get('error') }}</div>
                     @endif
-                    <form method="POST" class="p-auto" action="{{ route('admin.auth') }}">
+                    @if(\Illuminate\Support\Facades\Session::has('logout'))
+                        <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('logout') }}</div>
+                    @endif
+                    <form method="POST" class="p-auto"  action="{{ route('admin.login') }}">
                         @csrf
                         <!-- Email input -->
                         <div class="form-outline mb-4">
