@@ -58,6 +58,9 @@
                                     @endauth
                                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
+                                        @if(\Illuminate\Support\Facades\Auth::guard('admin')->user())
+                                            <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+                                        @endif
                                     @guest
                                         @if (Route::has('login'))
                                             <li><a href="{{ route('login') }}">Вход</a></li>

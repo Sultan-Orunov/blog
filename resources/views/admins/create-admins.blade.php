@@ -30,7 +30,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">create</button>
+                        <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Create</button>
 
                     </form>
 
